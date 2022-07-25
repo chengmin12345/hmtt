@@ -5,9 +5,10 @@
   </div>
 </template>
 <script>
+import { getAllAPI } from '@/api'
 export default {
   async created () {
-    const res = await new Promise()
+    const res = await getAllAPI()
     console.log(res)
   }
 }
