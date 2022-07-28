@@ -37,8 +37,8 @@ export default {
   data () {
     return {
       user: {
-        mobile: '', // 手机号
-        code: ''// 验证码（密码必须是246810）
+        mobile: '13466789099', // 手机号
+        code: '246810'// 验证码（密码必须是246810）
       },
       loginFormRule: {
         mobile: [

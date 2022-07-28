@@ -25,6 +25,18 @@ const routes = [
         component: () => import('@/views/User/myUser.vue')
       }
     ]
+  },
+  {
+    path: '/search',
+    component: () => import('@/views/Search/searchChannel.vue')
+  },
+  {
+    path: '/search_result/:keyword',
+    component: () => import('@/views/Search/searchResult.vue')
+  },
+  {
+    path: '/detail',
+    component: () => import('@/views/ArticleDetail/articleDetail.vue')
   }
 ]
 
