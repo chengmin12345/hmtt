@@ -31,7 +31,8 @@
 <script>
 import { loginAPI } from '@/api'
 import { setToken } from '@/utils/token'
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
+import { setStorage } from '@/utils/storage'
 export default {
   name: 'myLogin',
   data () {
@@ -56,11 +57,12 @@ export default {
       // 点击后改变登录状态
       this.isLoading = true
       try {
-        const res = await loginAPI(this.user)
+        const { data: res } = await loginAPI(this.user)
         Notify({ type: 'success', message: '登录成功！！' })
-        setToken(res.data.data.token)
+        setToken(res.data.token)
+        setStorage('refresh_token', res.data.refresh_token) // 本地存入新的token
         this.$router.replace({
-          path: '/layout/home'
+          path: this.$route.query.path || '/layout/home'
         })
         // console.log(res)
       } catch (error) {

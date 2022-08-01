@@ -14,6 +14,7 @@
         :artObj="li"
         @disLikeEV="disLikeFn"
         @reportEV="reportFn"
+        @click.native="itemClickFn(li.art_id)"
       ></ArticleItem>
     </van-list>
   </van-pull-refresh>
@@ -22,7 +23,7 @@
 <script>
 import ArticleItem from '../../../components/ArticleItem.vue'
 import { getAllArticleAPI, dislikeArticleAPI, reportArticleAPI } from '@/api'
-import { Notify } from 'vant'
+import Notify from '@/ui/Notify'
 export default {
   name: 'ArticleList',
   props: {
@@ -105,6 +106,10 @@ export default {
         type: value
       })
       Notify({ type: 'success', message: '举报成功！！' })
+    },
+    // 文章搜索结果点击调转到详情页事件
+    itemClickFn (id) {
+      this.$router.push(`/detail?art_id=${id}`)
     }
   }
 }

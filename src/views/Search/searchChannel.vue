@@ -39,13 +39,15 @@
 
 <script>
 import { searchSuggestionAPI } from '@/api'
+import { setStorage, getStorage } from '@/utils/storage'
 export default {
+  name: 'searchChannel',
   data () {
     return {
       keyword: '', // 搜索关键字
       timer: null, // 防抖定时器
       suggestList: [], // 联想列表数据
-      history: JSON.parse(localStorage.getItem('his')) || [] // 搜索历史
+      history: JSON.parse(getStorage('his')) || [] // 搜索历史
     }
   },
   methods: {
@@ -127,7 +129,7 @@ export default {
         // 注意: 如果值是对象比较的是对象内存地址
         const theSet = new Set(this.history)
         // 立即覆盖式的保存到本地
-        localStorage.setItem('his', JSON.stringify([...theSet]))
+        setStorage('his', JSON.stringify([...theSet]))
       }
     }
   }

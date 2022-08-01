@@ -54,6 +54,7 @@
 
 <script>
 export default {
+  name: 'channelEdit',
   props: {
     userList: Array, // 用户已选
     unCheckList: Array // 用户未选

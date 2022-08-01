@@ -13,7 +13,13 @@
     <!-- 搜索文章结果列表 -->
     <div>
         <!-- 文章结果列表组件 -->
-        <ArticleItem  v-for="obj in articleList" :key=" obj.art_id" :artObj="obj" :isShow="false"></ArticleItem>
+        <ArticleItem
+        v-for="obj in articleList"
+        :key=" obj.art_id"
+        :artObj="obj"
+        :isShow="false"
+        @click.native="itemClickFn(obj.art_id)"
+        ></ArticleItem>
          <!-- 加载更多 -->
         <van-list
         v-model="loading"
@@ -66,6 +72,10 @@ export default {
         this.getsearchResultAPI()
         this.loading = false
       }
+    },
+    // 文章搜索结果点击调转到详情页事件
+    itemClickFn (id) {
+      this.$router.push(`/detail?art_id=${id}`)
     }
   },
   components: {

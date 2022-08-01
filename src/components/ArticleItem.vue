@@ -6,17 +6,17 @@
         <div class="title-box">
           <!-- 标题 -->
           <span>{{ artObj.title }}</span>
-          <!-- <img class="thumb" v-if="artObj.cover.type === 1" :src="artObj.cover.images[0]" alt=""> -->
-          <van-image class="thumb" v-if="artObj.cover.type === 1" :src="artObj.cover.images[0]">
+          <img class="thumb" v-if="artObj.cover.type === 1"  v-lazy="artObj.cover.images[0]" alt="">
+          <!-- <van-image class="thumb" v-if="artObj.cover.type === 1" :src="artObj.cover.images[0]">
             <template v-slot:error>加载失败</template>
-          </van-image>
+          </van-image> -->
         </div>
         <!-- 多图 -->
         <div class="thumb-box" v-if="artObj.cover.type > 1">
-          <!-- <img class="thumb" v-for="(imgURL,index) in artObj.cover.images" :key="index" :src="imgURL" alt=""> -->
-          <van-image class="thumb" v-for="(imgURL,index) in artObj.cover.images" :key="index" :src="imgURL">
-            <template v-slot:error>加载走丢了</template>
-          </van-image>
+          <img class="thumb" v-for="(imgURL,index) in artObj.cover.images" :key="index"  v-lazy="imgURL" alt="">
+          <!-- <van-image class="thumb" v-for="(imgURL,index) in artObj.cover.images" :key="index" :src="imgURL">
+            <template v-slot:error>图片走丢了</template>
+          </van-image> -->
         </div>
       </template>
       <!-- label区域的插槽 -->
@@ -28,7 +28,7 @@
             <span>{{ formatTime(artObj.pubdate) }}</span>
           </div>
           <!-- 反馈按钮 -->
-          <van-icon name="cross" @click="show=true" v-if="isShow"></van-icon>
+          <van-icon name="cross" @click.stop="show=true" v-if="isShow"></van-icon>
         </div>
       </template>
      </van-cell>

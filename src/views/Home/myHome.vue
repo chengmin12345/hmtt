@@ -147,7 +147,20 @@ export default {
     // 关闭弹出层
     closeFn () {
       this.channel_show = false
+    },
+    //  滚动条滚动事件
+    scrollFn () {
+      this.$route.meta.scrollT = document.documentElement.scrollTop
     }
+  },
+  activated () {
+    // 实时检测滚动条的位置
+    window.addEventListener('scroll', this.scrollFn)
+    //  立刻设置，滚动条的位置
+    document.documentElement.scrollTop = this.$route.meta.scrollT
+  },
+  deactivated () {
+    window.removeEventListener('scroll', this.scrollFn)
   }
 }
 </script>
